@@ -1,0 +1,349 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Silk Kanjivaram Saree",
+      "category": "Sarees",
+      "price": 8500,
+      "description": "Beautiful traditional Kanjivaram silk saree with intricate zari work. Perfect for weddings and special occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 15,
+      "rating": 4.81,
+      "ratingCount": 71,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-002",
+      "name": "Banarasi Silk Saree",
+      "category": "Sarees",
+      "price": 12000,
+      "description": "Elegant Banarasi silk saree with gold and silver brocade work. A timeless piece for traditional celebrations.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 10,
+      "rating": 3.68,
+      "ratingCount": 30,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-003",
+      "name": "Cotton Printed Saree",
+      "category": "Sarees",
+      "price": 2500,
+      "description": "Comfortable cotton saree with beautiful floral prints. Ideal for daily wear and casual occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 25,
+      "rating": 4,
+      "ratingCount": 3,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-004",
+      "name": "Chiffon Designer Saree",
+      "category": "Sarees",
+      "price": 4500,
+      "description": "Stylish chiffon saree with designer borders and elegant drape. Perfect for parties and formal events.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 20,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-005",
+      "name": "Georgette Embroidered Saree",
+      "category": "Sarees",
+      "price": 5500,
+      "description": "Luxurious georgette saree with intricate embroidery work. A sophisticated choice for special occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 18,
+      "rating": 3,
+      "ratingCount": 2,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-006",
+      "name": "Organza Party Wear Saree",
+      "category": "Sarees",
+      "price": 6800,
+      "description": "Glamorous organza saree with sequin work. Make a statement at parties and celebrations.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 12,
+      "rating": 5,
+      "ratingCount": 2,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-007",
+      "name": "Linen Handloom Saree",
+      "category": "Sarees",
+      "price": 3200,
+      "description": "Eco-friendly handloom linen saree with traditional patterns. Comfortable and sustainable fashion.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 22,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-008",
+      "name": "Tussar Silk Saree",
+      "category": "Sarees",
+      "price": 7500,
+      "description": "Rich Tussar silk saree with natural golden sheen. A premium choice for traditional events.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 14,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-009",
+      "name": "Kotta Silk Saree",
+      "category": "Sarees",
+      "price": 9200,
+      "description": "Elegant Kotta silk saree with traditional motifs and rich texture. Perfect for festive occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 16,
+      "rating": 3,
+      "ratingCount": 2,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-010",
+      "name": "Kora Silk Saree",
+      "category": "Sarees",
+      "price": 8800,
+      "description": "Beautiful Kora silk saree with delicate patterns and smooth finish. Ideal for formal gatherings.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 13,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-011",
+      "name": "Raw Silk Saree",
+      "category": "Sarees",
+      "price": 6500,
+      "description": "Natural raw silk saree with rustic charm and elegant drape. A classic choice for traditional events.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 19,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-012",
+      "name": "Crepe Silk Saree",
+      "category": "Sarees",
+      "price": 7200,
+      "description": "Stylish crepe silk saree with modern designs and comfortable texture. Perfect for contemporary occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 17,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-013",
+      "name": "Cotton Handloom Saree",
+      "category": "Sarees",
+      "price": 2800,
+      "description": "Traditional handloom cotton saree with authentic patterns. Comfortable for daily wear and casual events.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 24,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-014",
+      "name": "Cotton Silk Saree",
+      "category": "Sarees",
+      "price": 4200,
+      "description": "Versatile cotton silk blend saree combining comfort with elegance. Great for semi-formal occasions.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 21,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-015",
+      "name": "Net Embroidered Saree",
+      "category": "Sarees",
+      "price": 5800,
+      "description": "Elegant net saree with intricate embroidery and sequin work. Perfect for parties and celebrations.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 15,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "prod-016",
+      "name": "Satin Designer Saree",
+      "category": "Sarees",
+      "price": 6200,
+      "description": "Luxurious satin saree with designer borders and glossy finish. Make a glamorous statement.",
+      "image": "https://placehold.co/600x800/png?text=Saree",
+      "stock": 18,
+      "rating": 0,
+      "ratingCount": 0,
+      "offerPercent": 0
+    },
+    {
+      "id": "62e55310-8446-40d7-b18e-0bd55d66c8d3",
+      "name": "silk",
+      "category": "Sarees",
+      "price": 2000,
+      "description": "bueatifull sarees",
+      "image": "/uploads/1769833568977-img.jpeg",
+      "stock": 10,
+      "rating": 0.5,
+      "offerPercent": 30,
+      "offerLabel": "pongal offers ",
+      "ratingCount": 0
+    },
+    {
+      "id": "6d3d2b62-157c-4b9e-a22a-307b8ef78e9f",
+      "name": "sarees",
+      "category": "Sarees",
+      "price": 2000,
+      "description": "sares",
+      "image": "/uploads/1769834110697-img.jpeg",
+      "stock": 20,
+      "rating": 5,
+      "offerPercent": 70,
+      "offerLabel": "pongal",
+      "ratingCount": 0
+    }
+  ],
+  "orders": [
+    {
+      "id": "a4253dfa-0ac6-43d2-94ea-fa7e2159fa88",
+      "date": "2026-01-22",
+      "items": [
+        {
+          "productId": "prod-001",
+          "name": "Silk Kanjivaram Saree",
+          "price": 8500,
+          "quantity": 1
+        },
+        {
+          "productId": "prod-002",
+          "name": "Banarasi Silk Saree",
+          "price": 12000,
+          "quantity": 1
+        }
+      ],
+      "total": 20500,
+      "status": "completed"
+    },
+    {
+      "id": "82c7ea0d-4c9c-46a8-8956-0b7b9349fbd2",
+      "date": "2026-01-31",
+      "items": [
+        {
+          "productId": "prod-003",
+          "name": "Cotton Printed Saree",
+          "price": 2500,
+          "quantity": 1
+        }
+      ],
+      "total": 2500,
+      "status": "completed"
+    },
+    {
+      "id": "26a1370e-2006-4d20-b693-cd7414547d57",
+      "date": "2026-02-02",
+      "items": [
+        {
+          "productId": "prod-001",
+          "name": "Silk Kanjivaram Saree",
+          "price": 8500,
+          "quantity": 1
+        }
+      ],
+      "total": 8500,
+      "status": "completed"
+    },
+    {
+      "id": "c8925823-e837-454c-a042-8ce47c3e3507",
+      "date": "2026-02-02",
+      "items": [
+        {
+          "productId": "prod-001",
+          "name": "Silk Kanjivaram Saree",
+          "price": 8500,
+          "quantity": 3
+        }
+      ],
+      "total": 25500,
+      "status": "completed"
+    }
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "$2a$10$dsJg8n6OYsNZwtMVs6v8UekvjQ8PBSTtrsgPOeadU.sIHv3w5dnnK"
+  },
+  "notifications": [
+    {
+      "id": "7db658e4-c1e7-48b4-b848-c5d0d33d10f5",
+      "type": "order",
+      "message": "New order c8925823-e837-454c-a042-8ce47c3e3507 placed. Total ₹25,500",
+      "createdAt": "2026-02-02T08:35:49.325Z",
+      "read": false,
+      "meta": {
+        "orderId": "c8925823-e837-454c-a042-8ce47c3e3507",
+        "items": [
+          {
+            "productId": "prod-001",
+            "name": "Silk Kanjivaram Saree",
+            "price": 8500,
+            "quantity": 3
+          }
+        ],
+        "total": 25500
+      }
+    },
+    {
+      "id": "98c9e475-c0c7-4bbc-92fa-57e302ac41c4",
+      "type": "order",
+      "message": "New order 26a1370e-2006-4d20-b693-cd7414547d57 placed. Total ₹8,500",
+      "createdAt": "2026-02-02T06:14:34.060Z",
+      "read": false,
+      "meta": {
+        "orderId": "26a1370e-2006-4d20-b693-cd7414547d57",
+        "items": [
+          {
+            "productId": "prod-001",
+            "name": "Silk Kanjivaram Saree",
+            "price": 8500,
+            "quantity": 1
+          }
+        ],
+        "total": 8500
+      }
+    },
+    {
+      "id": "3132b6ce-8a5b-483c-be8d-f82677d2c2c7",
+      "type": "order",
+      "message": "New order 82c7ea0d-4c9c-46a8-8956-0b7b9349fbd2 placed. Total ₹2,500",
+      "createdAt": "2026-01-31T03:45:12.253Z",
+      "read": false,
+      "meta": {
+        "orderId": "82c7ea0d-4c9c-46a8-8956-0b7b9349fbd2",
+        "items": [
+          {
+            "productId": "prod-003",
+            "name": "Cotton Printed Saree",
+            "price": 2500,
+            "quantity": 1
+          }
+        ],
+        "total": 2500
+      }
+    }
+  ]
+}
