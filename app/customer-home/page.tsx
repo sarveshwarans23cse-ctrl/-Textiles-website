@@ -43,7 +43,7 @@ export default function CustomerHomePage() {
         {/* Animated Glow Effects */}
         <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-float-slow" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-amber-500/5 to-transparent rounded-full" />
         </div>
 
@@ -76,7 +76,7 @@ export default function CustomerHomePage() {
                 >
                   {item === 'My Orders' && <Package className="w-4 h-4" />}
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-amber-400 to-primary-400 group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-amber-400 to-purple-400 group-hover:w-full transition-all duration-300" />
                 </Link>
               ))}
             </div>
@@ -100,7 +100,7 @@ export default function CustomerHomePage() {
           {/* Main Headline with Gradient */}
           <h1 className={`text-5xl md:text-7xl lg:text-8xl font-medium tracking-wide mb-6 drop-shadow-2xl transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-white">Elevate Your </span>
-            <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-primary-400 bg-clip-text text-transparent">Style</span>
+            <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-purple-400 bg-clip-text text-transparent">Style</span>
           </h1>
 
           {/* Decorative Line */}
@@ -147,7 +147,7 @@ export default function CustomerHomePage() {
       <section className="relative py-24 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950">
         {/* Decorative Elements */}
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -198,7 +198,7 @@ export default function CustomerHomePage() {
               { value: '100%', label: 'Authentic Silk' },
             ].map((stat, i) => (
               <div key={i} className="text-center group">
-                <div className="text-4xl md:text-5xl font-serif bg-gradient-to-r from-amber-400 to-primary-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
+                <div className="text-4xl md:text-5xl font-serif bg-gradient-to-r from-amber-400 to-purple-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
                   {stat.value}
                 </div>
                 <div className="text-white/40 text-sm tracking-wider uppercase">{stat.label}</div>
@@ -211,7 +211,7 @@ export default function CustomerHomePage() {
       {/* CTA Banner */}
       <section className="relative py-24 overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-primary-600 to-amber-600 animate-gradient-shift" />
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-purple-600 to-amber-600 animate-gradient-shift" />
         <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-10" />
 
         {/* Decorative Circles */}
