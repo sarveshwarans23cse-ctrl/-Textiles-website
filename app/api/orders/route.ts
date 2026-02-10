@@ -17,13 +17,20 @@ export async function POST(request: NextRequest) {
 
     await connectToDatabase();
 
-    // Create Order
+    // Create Order with pending status (will be updated after payment)
     const newOrder = await Order.create({
       items,
       total: Number(total),
-      status: 'completed',
+      status: 'pending',
+      paymentStatus: 'pending',
       date: new Date(),
-      customerDetails,
+      customerDetails: {
+        name: customerDetails?.name || 'Guest',
+        phone: customerDetails?.phone || '',
+        address: customerDetails?.address || '',
+        city: customerDetails?.city || '',
+        zipCode: customerDetails?.zip || customerDetails?.zipCode || ''
+      },
     });
 
     // Create notification for shop owner

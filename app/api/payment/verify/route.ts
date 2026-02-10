@@ -24,13 +24,20 @@ export async function POST(request: NextRequest) {
             const updatedOrder = await Order.findByIdAndUpdate(
                 orderId,
                 {
-                    status: 'pending', // Order is confirmed/placed
+                    status: 'completed', // Order is confirmed after successful payment
                     paymentStatus: 'paid',
                     paymentId: razorpay_payment_id,
                     paymentMethod: 'online',
                 },
                 { new: true }
             );
+
+            if (!updatedOrder) {
+                return NextResponse.json(
+                    { error: 'Order not found' },
+                    { status: 404 }
+                );
+            }
 
             // Notify Admin
             await Notification.create({

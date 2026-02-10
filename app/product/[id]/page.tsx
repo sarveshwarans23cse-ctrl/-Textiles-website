@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/lib/utils';
 import { useCart } from '@/contexts/CartContext';
-import { X, Loader2 } from 'lucide-react';
+import { X, Loader2, Sparkles, Star, Shield, Truck, RotateCcw, Heart, Share2, ChevronLeft, Package, Award, Clock, CheckCircle2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function ProductDetailsPage({ params }: { params: { id: string } }) {
@@ -18,6 +18,8 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [applyOffer, setApplyOffer] = useState<boolean>(true);
+  const [isLiked, setIsLiked] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { addToCart } = useCart();
 
   // Buy Now Modal State
@@ -39,7 +41,6 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
         if (!res.ok) throw new Error('Failed to load product');
         const data = await res.json();
         setProduct(data);
-        // Set initial images from default product or first variant
         if (data?.variants && data.variants.length > 0) {
           setSelectedColor(data.variants[0].color);
           setActiveImg(data.variants[0].images[0]);
@@ -72,7 +73,6 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
         name: product.name,
         price: finalPrice,
         quantity: 1,
-        // Add variant info if needed in future
       }],
       total: finalPrice,
       customerDetails
@@ -97,18 +97,31 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary-200 border-t-primary-600" />
+      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-rose-50/20 flex items-center justify-center">
+        <div className="text-center">
+          <div className="relative inline-block">
+            <div className="w-16 h-16 border-4 border-primary-200 rounded-full"></div>
+            <div className="absolute top-0 left-0 w-16 h-16 border-4 border-primary-600 rounded-full border-t-transparent animate-spin"></div>
+          </div>
+          <p className="mt-6 text-stone-600 font-serif text-lg animate-pulse">Loading exquisite details...</p>
+        </div>
       </div>
     );
   }
 
   if (error || !product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="bg-white rounded-xl shadow p-8 text-center">
-          <p className="text-gray-700 font-medium mb-4">{error || 'Product not found'}</p>
-          <Link href="/" className="text-primary-600 hover:text-primary-700 font-semibold">Go back</Link>
+      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-rose-50/20 flex items-center justify-center">
+        <div className="bg-white rounded-3xl shadow-2xl p-12 text-center max-w-md mx-4 border border-stone-100">
+          <div className="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Package className="w-10 h-10 text-stone-400" />
+          </div>
+          <h2 className="text-2xl font-serif text-stone-800 mb-3">{error || 'Product not found'}</h2>
+          <p className="text-stone-500 mb-8">We couldn't find the product you're looking for.</p>
+          <Link href="/collections" className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-full hover:shadow-xl transition-all hover:-translate-y-0.5">
+            <ChevronLeft className="w-4 h-4" />
+            Browse Collections
+          </Link>
         </div>
       </div>
     );
@@ -118,37 +131,98 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
     ? Math.max(0, Math.round(product.price * (1 - product.offerPercent / 100)))
     : null;
   const finalPrice = applyOffer && discounted !== null ? discounted : product.price;
-  const sizes = ['28', '30', '32'];
+  const sizes = ['28', '30', '32', '34', '36'];
+  const savings = discounted !== null ? product.price - discounted : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 relative">
-      <nav className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-primary-700">Store</Link>
-          <Link href="/cart" className="text-sm font-medium text-gray-700 hover:text-primary-600">Cart</Link>
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/30 to-rose-50/20">
+      {/* Premium Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-stone-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/collections" className="group flex items-center gap-2 text-stone-600 hover:text-primary-600 transition-colors">
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span className="text-sm font-medium">Back to Collections</span>
+            </Link>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center shadow-lg shadow-primary-500/20">
+                <Sparkles className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-xl font-serif text-stone-900">The Weave <span className="text-primary-600 italic">House</span></span>
+            </Link>
+            <Link href="/cart" className="relative group p-2.5 rounded-xl bg-stone-100 hover:bg-primary-50 transition-all">
+              <Package className="w-5 h-5 text-stone-700 group-hover:text-primary-600 transition-colors" />
+            </Link>
+          </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <div className="bg-white rounded-xl shadow overflow-hidden relative min-h-[360px]">
-              {activeImg ? (
-                <Image src={activeImg} alt={product.name} fill className="object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-200 to-purple-200">
-                  <svg className="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          {/* Image Gallery Section */}
+          <div className="space-y-4">
+            {/* Main Image */}
+            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden group">
+              <div className="relative aspect-[4/5]">
+                {activeImg ? (
+                  <>
+                    <Image
+                      src={activeImg}
+                      alt={product.name}
+                      fill
+                      className={`object-cover transition-all duration-700 ${imageLoaded ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
+                      onLoad={() => setImageLoaded(true)}
+                      priority
+                    />
+                    {/* Hover Zoom Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </>
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-amber-100 via-rose-100 to-primary-100">
+                    <span className="text-6xl font-serif text-stone-400/40 tracking-wider">Saree</span>
+                    <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-stone-300 to-transparent mt-3" />
+                  </div>
+                )}
+
+                {/* Offer Badge */}
+                {product.offerPercent && product.offerPercent > 0 && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-red-600 rounded-full blur-sm opacity-80" />
+                      <div className="relative bg-gradient-to-r from-rose-500 to-red-600 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 animate-sparkle" />
+                        {product.offerPercent}% OFF
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+                  <button
+                    onClick={() => setIsLiked(!isLiked)}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${isLiked ? 'bg-rose-500 text-white' : 'bg-white/90 backdrop-blur-sm text-stone-600 hover:bg-rose-500 hover:text-white'
+                      }`}
+                  >
+                    <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+                  </button>
+                  <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-600 hover:bg-primary-500 hover:text-white transition-all duration-300 shadow-lg">
+                    <Share2 className="w-5 h-5" />
+                  </button>
                 </div>
-              )}
-              {product.offerPercent && product.offerPercent > 0 && (
-                <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                  {product.offerLabel || 'Offer'} - {product.offerPercent}% OFF
+
+                {/* Premium Tag */}
+                <div className="absolute bottom-4 left-4 z-10">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
+                    <Award className="w-4 h-4 text-amber-500" />
+                    <span className="text-xs font-semibold text-stone-700">Handcrafted Excellence</span>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
-            <div className="mt-3 grid grid-cols-4 gap-3">
+
+            {/* Thumbnail Gallery */}
+            <div className="grid grid-cols-4 gap-3">
               {(() => {
                 let imagesToShow = [product.image];
                 if (selectedColor && product.variants) {
@@ -159,11 +233,18 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                 }
 
                 return imagesToShow.map((src, i) => (
-                  <button key={i} onClick={() => setActiveImg(src || null)} className={`relative h-20 rounded-lg overflow-hidden border ${activeImg === src ? 'border-primary-500' : 'border-gray-200'}`}>
+                  <button
+                    key={i}
+                    onClick={() => { setActiveImg(src || null); setImageLoaded(false); }}
+                    className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-300 ${activeImg === src
+                        ? 'border-primary-500 ring-2 ring-primary-200 shadow-lg'
+                        : 'border-stone-200 hover:border-primary-300'
+                      }`}
+                  >
                     {src ? (
-                      <Image src={src} alt={`thumb-${i}`} fill className="object-cover" />
+                      <Image src={src} alt={`View ${i + 1}`} fill className="object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-gray-100" />
+                      <div className="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200" />
                     )}
                   </button>
                 ))
@@ -171,30 +252,50 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow p-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">{product.name}</h1>
-            <p className="text-sm text-gray-500 mb-4">Category: {product.category}</p>
+          {/* Product Details Section */}
+          <div className="lg:sticky lg:top-24 lg:self-start space-y-6">
+            {/* Product Header */}
+            <div className="bg-white rounded-3xl shadow-xl p-6 lg:p-8 border border-stone-100">
+              {/* Category Badge */}
+              <div className="flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 bg-gradient-to-r from-primary-50 to-amber-50 text-primary-700 text-xs font-semibold rounded-full border border-primary-200">
+                  {product.category}
+                </span>
+                {product.stock < 10 && (
+                  <span className="px-3 py-1 bg-orange-50 text-orange-600 text-xs font-semibold rounded-full border border-orange-200 flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    Only {product.stock} left
+                  </span>
+                )}
+              </div>
 
-            <div className="flex items-center gap-3 mb-4">
-              {discounted !== null ? (
-                <>
-                  <span className="text-2xl font-bold text-primary-600">₹{discounted.toLocaleString()}</span>
-                  <span className="text-sm line-through text-gray-500">₹{product.price.toLocaleString()}</span>
-                </>
-              ) : (
-                <span className="text-2xl font-bold text-primary-600">₹{product.price.toLocaleString()}</span>
-              )}
-              {product.stock < 10 && (
-                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-medium">{product.stock} left</span>
-              )}
-            </div>
+              {/* Product Title */}
+              <h1 className="text-3xl lg:text-4xl font-serif text-stone-900 mb-4 leading-tight">
+                {product.name}
+              </h1>
 
-            <div className="mb-6 space-y-4">
+              {/* Price Section */}
+              <div className="flex items-baseline gap-4 mb-6 pb-6 border-b border-stone-100">
+                <span className="text-4xl font-serif font-bold bg-gradient-to-r from-primary-600 to-amber-600 bg-clip-text text-transparent">
+                  ₹{finalPrice.toLocaleString()}
+                </span>
+                {discounted !== null && (
+                  <>
+                    <span className="text-lg line-through text-stone-400">₹{product.price.toLocaleString()}</span>
+                    <span className="px-3 py-1 bg-green-50 text-green-600 text-sm font-semibold rounded-full">
+                      Save ₹{savings.toLocaleString()}
+                    </span>
+                  </>
+                )}
+              </div>
+
               {/* Color Selection */}
               {product.variants && product.variants.length > 0 && (
-                <div>
-                  <p className="text-sm font-medium text-gray-700 mb-2">Color: <span className="font-bold text-gray-900">{selectedColor}</span></p>
-                  <div className="flex gap-2">
+                <div className="mb-6">
+                  <p className="text-sm font-medium text-stone-700 mb-3">
+                    Color: <span className="font-bold text-stone-900">{selectedColor}</span>
+                  </p>
+                  <div className="flex flex-wrap gap-2">
                     {product.variants.map((variant, idx) => (
                       <button
                         key={idx}
@@ -202,9 +303,13 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                           setSelectedColor(variant.color);
                           if (variant.images && variant.images.length > 0) {
                             setActiveImg(variant.images[0]);
+                            setImageLoaded(false);
                           }
                         }}
-                        className={`px-3 py-1.5 rounded-lg border text-sm transition-all ${selectedColor === variant.color ? 'border-primary-600 ring-2 ring-primary-100 bg-primary-50 text-primary-700 font-medium' : 'border-gray-200 hover:border-gray-300 text-gray-700'}`}
+                        className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${selectedColor === variant.color
+                            ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/30'
+                            : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                          }`}
                       >
                         {variant.color}
                       </button>
@@ -214,14 +319,17 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
               )}
 
               {/* Size Selection */}
-              <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">Select Size</p>
-                <div className="flex gap-2">
+              <div className="mb-6">
+                <p className="text-sm font-medium text-stone-700 mb-3">Select Size</p>
+                <div className="flex flex-wrap gap-2">
                   {sizes.map(s => (
                     <button
                       key={s}
                       onClick={() => setSelectedSize(s)}
-                      className={`px-3 py-1.5 rounded-lg border text-sm ${selectedSize === s ? 'border-primary-600 text-primary-700 bg-primary-50' : 'border-gray-300 text-gray-700 hover:bg-gray-50'}`}
+                      className={`w-12 h-12 rounded-xl text-sm font-semibold transition-all duration-300 ${selectedSize === s
+                          ? 'bg-stone-900 text-white shadow-lg'
+                          : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                        }`}
                     >
                       {s}
                     </button>
@@ -229,32 +337,32 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                 </div>
               </div>
 
-              <details className="mb-4 rounded-lg overflow-hidden">
-                <summary className="list-none">
-                  <div className="bg-indigo-600 text-white px-4 py-3 rounded-lg flex items-center justify-between cursor-pointer">
-                    <span className="font-semibold">Apply offers for maximum savings</span>
-                    <span className="text-sm">{applyOffer && discounted !== null ? `Buy at ₹${finalPrice.toLocaleString()}` : 'View offers'}</span>
-                  </div>
-                </summary>
-                <div className="bg-white border border-indigo-200 rounded-b-lg p-4 space-y-3">
-                  <div className="flex items-center justify-between">
+              {/* Offer Banner */}
+              {discounted !== null && (
+                <div className="mb-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-primary-500 rounded-2xl p-4 text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+                  <div className="relative flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-semibold">Best value for you</p>
-                      <p className="text-xs text-gray-500">Automatic discount applied</p>
+                      <p className="text-sm font-medium opacity-90">Special Offer Applied</p>
+                      <p className="text-lg font-bold">Save ₹{savings.toLocaleString()} on this purchase!</p>
                     </div>
-                    <button onClick={() => setApplyOffer(v => !v)} className="px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-sm">
+                    <button
+                      onClick={() => setApplyOffer(v => !v)}
+                      className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-xl text-sm font-medium transition-colors"
+                    >
                       {applyOffer ? 'Remove' : 'Apply'}
                     </button>
                   </div>
-                  {discounted !== null && (
-                    <p className="text-sm text-gray-700">Price after offer: <span className="font-semibold">₹{finalPrice.toLocaleString()}</span></p>
-                  )}
                 </div>
-              </details>
+              )}
 
-              <p className="text-gray-700 leading-relaxed mb-6">{product.description}</p>
+              {/* Description */}
+              <p className="text-stone-600 leading-relaxed mb-6">
+                {product.description}
+              </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 <button
                   onClick={() => addToCart({
                     id: product.id,
@@ -263,26 +371,62 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                     image: activeImg || product.image,
                     color: selectedColor
                   })}
-                  className="w-full bg-[#B12704] text-white px-4 py-3 rounded-lg hover:bg-[#9c2303] font-medium shadow-sm transition-colors"
+                  className="group flex items-center justify-center gap-2 py-4 bg-stone-900 hover:bg-stone-800 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
-                  Add to cart
+                  <Package className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  Add to Cart
                 </button>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full text-center bg-[#FA8900] text-white px-4 py-3 rounded-lg hover:bg-[#e37e00] font-medium shadow-sm transition-colors"
+                  className="group flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-xl hover:-translate-y-0.5"
                 >
-                  Buy now at ₹{finalPrice.toLocaleString()}
+                  <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  Buy Now
                 </button>
               </div>
 
-              <div className="rounded-lg border border-gray-200 p-4 bg-gray-50">
-                <h3 className="font-semibold text-gray-800 mb-2">Delivery details</h3>
-                <p className="text-sm text-gray-600">Location not set <span className="text-primary-600 font-medium cursor-pointer">Select delivery location</span></p>
-                <p className="text-sm text-gray-600 mt-2">10-Day Return · Cash on Delivery · Assured Quality</p>
+              {/* Trust Badges */}
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-stone-100">
+                <div className="text-center">
+                  <div className="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-2">
+                    <Shield className="w-5 h-5 text-green-600" />
+                  </div>
+                  <p className="text-xs font-medium text-stone-700">Secure Payment</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-2">
+                    <Truck className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <p className="text-xs font-medium text-stone-700">Free Delivery</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center mx-auto mb-2">
+                    <RotateCcw className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <p className="text-xs font-medium text-stone-700">10-Day Return</p>
+                </div>
               </div>
+            </div>
 
-              <div className="mt-6">
-                <Link href="/" className="text-primary-600 hover:text-primary-700 font-medium">Back to home</Link>
+            {/* Delivery Info Card */}
+            <div className="bg-gradient-to-br from-stone-50 to-amber-50/50 rounded-3xl p-6 border border-stone-200">
+              <h3 className="font-serif text-lg text-stone-900 mb-4 flex items-center gap-2">
+                <Truck className="w-5 h-5 text-primary-600" />
+                Delivery Information
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-sm text-stone-600">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  <span>Free delivery on orders above ₹5,000</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-stone-600">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  <span>Cash on Delivery available</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-stone-600">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  <span>Estimated delivery: 5-7 business days</span>
+                </div>
               </div>
             </div>
           </div>
@@ -291,41 +435,54 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
 
       {/* Buy Now Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200">
-            <div className="p-4 border-b flex items-center justify-between sticky top-0 bg-white z-10">
-              <h2 className="text-lg font-bold text-gray-900">Complete Purchase</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-scale-in">
+            {/* Modal Header */}
+            <div className="p-5 border-b border-stone-100 flex items-center justify-between sticky top-0 bg-white z-10 rounded-t-3xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
+                  <Package className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-serif font-bold text-stone-900">Complete Purchase</h2>
+                  <p className="text-xs text-stone-500">Secure checkout</p>
+                </div>
+              </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
+                className="p-2 rounded-xl hover:bg-stone-100 text-stone-400 hover:text-stone-600 transition-colors"
               >
                 <X size={20} />
               </button>
             </div>
 
             <div className="p-6">
-              <div className="flex gap-4 mb-6 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                <div className="relative w-16 h-16 rounded-md overflow-hidden bg-white border border-gray-200 flex-shrink-0">
-                  {/* Fallback image logic same as main page */}
+              {/* Product Summary */}
+              <div className="flex gap-4 mb-6 bg-gradient-to-r from-stone-50 to-amber-50/50 p-4 rounded-2xl border border-stone-100">
+                <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-white border border-stone-200 flex-shrink-0">
                   {(activeImg || product.image) ? (
                     <Image src={activeImg || product.image || ''} alt="Product" fill className="object-cover" />
                   ) : (
-                    <div className="w-full h-full bg-gray-200" />
+                    <div className="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200" />
                   )}
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-900 line-clamp-1">{product.name}</h3>
-                  <p className="text-primary-600 font-bold mt-1">₹{finalPrice.toLocaleString()}</p>
+                <div className="flex-1">
+                  <h3 className="text-sm font-serif font-semibold text-stone-900 line-clamp-2">{product.name}</h3>
+                  {selectedColor && <p className="text-xs text-stone-500 mt-1">Color: {selectedColor}</p>}
+                  <p className="text-lg font-bold bg-gradient-to-r from-primary-600 to-amber-600 bg-clip-text text-transparent mt-1">
+                    ₹{finalPrice.toLocaleString()}
+                  </p>
                 </div>
               </div>
 
+              {/* Customer Form */}
               <form onSubmit={handleBuyNow} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1.5">Full Name</label>
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 outline-none transition-all bg-stone-50 focus:bg-white"
                     placeholder="Enter your name"
                     value={customerDetails.name}
                     onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
@@ -333,11 +490,11 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1.5">Phone Number</label>
                   <input
                     type="tel"
                     required
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 outline-none transition-all bg-stone-50 focus:bg-white"
                     placeholder="10-digit mobile number"
                     value={customerDetails.phone}
                     onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
@@ -345,12 +502,12 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1.5">Delivery Address</label>
                   <textarea
                     required
                     rows={2}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all resize-none"
-                    placeholder="Area and Street"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 outline-none transition-all resize-none bg-stone-50 focus:bg-white"
+                    placeholder="House/Flat, Street, Area"
                     value={customerDetails.address}
                     onChange={(e) => setCustomerDetails({ ...customerDetails, address: e.target.value })}
                   />
@@ -358,32 +515,34 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">City/Town</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1.5">City</label>
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 outline-none transition-all bg-stone-50 focus:bg-white"
+                      placeholder="City"
                       value={customerDetails.city}
                       onChange={(e) => setCustomerDetails({ ...customerDetails, city: e.target.value })}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1.5">Pincode</label>
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 outline-none transition-all bg-stone-50 focus:bg-white"
+                      placeholder="Pincode"
                       value={customerDetails.zipCode}
                       onChange={(e) => setCustomerDetails({ ...customerDetails, zipCode: e.target.value })}
                     />
                   </div>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#FA8900] text-white py-3 rounded-lg font-bold shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5 transition-all disabled:opacity-70 disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white py-4 rounded-2xl font-bold shadow-lg shadow-primary-500/30 hover:shadow-xl transition-all disabled:opacity-70 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -391,12 +550,19 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
                         Processing...
                       </>
                     ) : (
-                      `Place Order - ₹${finalPrice.toLocaleString()}`
+                      <>
+                        <CheckCircle2 className="w-5 h-5" />
+                        Place Order - ₹{finalPrice.toLocaleString()}
+                      </>
                     )}
                   </button>
-                  <p className="text-xs text-center text-gray-500 mt-3">
-                    By placing this order, you agree to our Terms of Service
-                  </p>
+
+                  {/* Trust Indicators */}
+                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-stone-500">
+                    <span className="flex items-center gap-1"><Shield className="w-3 h-3" /> Secure</span>
+                    <span className="flex items-center gap-1"><Truck className="w-3 h-3" /> Free Delivery</span>
+                    <span className="flex items-center gap-1"><RotateCcw className="w-3 h-3" /> Easy Returns</span>
+                  </div>
                 </div>
               </form>
             </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ShoppingBag, Package } from 'lucide-react';
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 
@@ -30,33 +30,52 @@ export default function OrderSuccessPage() {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4 text-center">
-            <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-in zoom-in duration-500">
-                <CheckCircle2 className="w-12 h-12 text-green-600" />
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-stone-50 via-white to-amber-50 p-4 text-center">
+            {/* Success Animation */}
+            <div className="relative">
+                <div className="absolute inset-0 bg-green-400/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="relative w-28 h-28 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-green-200 animate-in zoom-in duration-500">
+                    <CheckCircle2 className="w-14 h-14 text-white" />
+                </div>
             </div>
 
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Placed Successfully!</h1>
-            <p className="text-gray-500 mb-8 max-w-md">
+            <h1 className="text-4xl font-bold text-stone-900 mb-3">Order Placed Successfully!</h1>
+            <p className="text-stone-500 mb-8 max-w-md text-lg">
                 Thank you for your purchase. Your order has been confirmed and will be shipped shortly.
             </p>
 
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 max-w-sm w-full mb-8">
-                <div className="flex justify-between mb-2">
-                    <span className="text-gray-500 text-sm">Order ID</span>
-                    <span className="font-mono font-medium text-gray-900">#{Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-stone-200 shadow-xl max-w-sm w-full mb-8">
+                <div className="flex justify-between mb-4 pb-4 border-b border-stone-100">
+                    <span className="text-stone-500">Order ID</span>
+                    <span className="font-mono font-bold text-stone-900">#{Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+                </div>
+                <div className="flex justify-between mb-4 pb-4 border-b border-stone-100">
+                    <span className="text-stone-500">Estimated Delivery</span>
+                    <span className="font-semibold text-stone-900">3-5 Days</span>
                 </div>
                 <div className="flex justify-between">
-                    <span className="text-gray-500 text-sm">Estimated Delivery</span>
-                    <span className="font-medium text-gray-900">3-5 Days</span>
+                    <span className="text-stone-500">Status</span>
+                    <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Confirmed</span>
                 </div>
             </div>
 
-            <Link
-                href="/"
-                className="bg-primary-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-700 transition-colors shadow-lg hover:shadow-primary-200"
-            >
-                Continue Shopping
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                    href="/orders"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all shadow-lg"
+                >
+                    <Package className="w-5 h-5" />
+                    Track Order
+                </Link>
+                <Link
+                    href="/"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-stone-200 text-stone-700 rounded-full font-semibold hover:bg-stone-50 hover:border-stone-300 transition-all"
+                >
+                    <ShoppingBag className="w-5 h-5" />
+                    Continue Shopping
+                </Link>
+            </div>
         </div>
     );
 }
+
