@@ -238,7 +238,7 @@ export default function AboutPage() {
                         </p>
 
                         <p className="text-lg text-stone-400 leading-8">
-                            We carefully curate each piece, working directly with master artisans to ensure that every fold tells a tale of craftsmanship. From the rich silks of Kanchipuram to the breezy cottons of Coimbatore, our collection is a tribute to India's textile heritage.
+                            We carefully curate each piece, working directly with master artisans to ensure that every fold tells a tale of craftsmanship. From the rich silks of Kanchipuram to the breezy cottons of Coimbatore, our collection is a tribute to India&apos;s textile heritage.
                         </p>
 
                         {/* Features List */}
@@ -410,9 +410,9 @@ export default function AboutPage() {
                                 <div className="w-8 h-px bg-gradient-to-r from-transparent to-amber-400"></div>
                                 Get In Touch
                             </span>
-                            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">We'd Love to <span className="text-gradient-gold">Hear From You</span></h2>
+                            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">We&apos;d Love to <span className="text-gradient-gold">Hear From You</span></h2>
                             <p className="text-stone-400 text-lg mb-10 leading-relaxed">
-                                Whether you have questions about our collection, need styling advice, or want to explore custom orders – we're here to help you find your perfect drape.
+                                Whether you have questions about our collection, need styling advice, or want to explore custom orders – we&apos;re here to help you find your perfect drape.
                             </p>
 
                             <div className="space-y-6">

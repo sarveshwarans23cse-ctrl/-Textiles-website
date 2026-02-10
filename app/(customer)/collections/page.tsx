@@ -306,7 +306,7 @@ export default function CollectionsPage() {
                 <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
                     <Sparkles className="w-8 h-8 text-primary-400 mx-auto mb-6" />
                     <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
-                        Can't Find What You're Looking For?
+                        Can&apos;t Find What You&apos;re Looking For?
                     </h2>
                     <p className="text-stone-300 text-lg mb-10 font-light max-w-2xl mx-auto">
                         Contact us for custom orders or to inquire about specific designs. We're here to help you find your perfect saree.

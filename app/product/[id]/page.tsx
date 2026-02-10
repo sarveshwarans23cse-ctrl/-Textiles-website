@@ -117,7 +117,7 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
             <Package className="w-10 h-10 text-stone-400" />
           </div>
           <h2 className="text-2xl font-serif text-stone-800 mb-3">{error || 'Product not found'}</h2>
-          <p className="text-stone-500 mb-8">We couldn't find the product you're looking for.</p>
+          <p className="text-stone-500 mb-8">We couldn&apos;t find the product you&apos;re looking for.</p>
           <Link href="/collections" className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-full hover:shadow-xl transition-all hover:-translate-y-0.5">
             <ChevronLeft className="w-4 h-4" />
             Browse Collections

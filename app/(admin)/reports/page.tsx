@@ -46,6 +46,7 @@ export default function ReportsPage() {
     if (startDate && endDate && session) {
       fetchReports();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate, session]);
 
   const fetchReports = async () => {
