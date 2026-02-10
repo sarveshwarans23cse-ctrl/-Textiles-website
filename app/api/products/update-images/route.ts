@@ -7,9 +7,9 @@ const sareeImagePool = [
     'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80', // Red silk saree
     'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80', // Traditional saree
     'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80', // Elegant drape
-    'https://images.unsplash.com/photo-1602481132167-82e4f1cb35a8?w=800&q=80', // Bridal saree
+    'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80', // Bridal saree
     'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80', // Party wear
-    'https://images.unsplash.com/photo-1583391733803-9f9e1e9e2a1c?w=800&q=80', // Designer saree
+    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80', // Designer saree
     'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=80', // Traditional wear
     'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80', // Festive saree
     'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=800&q=80', // Wedding saree
@@ -21,10 +21,10 @@ const sareeImages: { [key: string]: string } = {
     'kanchipuram': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
     'banarasi': 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80',
     'cotton': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
-    'silk': 'https://images.unsplash.com/photo-1602481132167-82e4f1cb35a8?w=800&q=80',
+    'silk': 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80',
     'organza': 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80',
     'linen': 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=80',
-    'kotta': 'https://images.unsplash.com/photo-1583391733803-9f9e1e9e2a1c?w=800&q=80',
+    'kotta': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
     'kora': 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
     'party': 'https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=800&q=80',
     'crepe': 'https://images.unsplash.com/photo-1614886137520-3b5176c15bc9?w=800&q=80',

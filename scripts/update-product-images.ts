@@ -12,8 +12,9 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // High-quality saree images from Unsplash (free to use)
 const sareeImages: { [key: string]: string } = {
-    // Kanchipuram Silk Sarees
+    // Kanchipuram/Kanjivaram Silk Sarees
     'kanchipuram': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
+    'kanjivaram': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
 
     // Banarasi Silk Sarees
     'banarasi': 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80',
@@ -22,7 +23,10 @@ const sareeImages: { [key: string]: string } = {
     'cotton': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
 
     // Silk Sarees (General)
-    'silk': 'https://images.unsplash.com/photo-1602481132167-82e4f1cb35a8?w=800&q=80',
+    'silk': 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80',
+    'soft silk': 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80',
+    'mysore silk': 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80',
+    'art silk': 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80',
 
     // Organza Sarees
     'organza': 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80',
@@ -30,11 +34,27 @@ const sareeImages: { [key: string]: string } = {
     // Linen Sarees
     'linen': 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80',
 
-    // Kotta Sarees
-    'kotta': 'https://images.unsplash.com/photo-1583391733803-9f9e1e9e2a1c?w=800&q=80',
+    // Kotta/Kora Sarees
+    'kotta': 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=80',
+    'kora': 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=80',
 
-    // Party Wear
-    'party': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
+    // Party Wear / Net / Sequins
+    'party': 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80',
+    'net': 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80',
+    'sequin': 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80',
+
+    // Georgette / Chiffon / Crepe (Elegant Drapes)
+    'georgette': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
+    'chiffon': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80',
+    'crepe': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
+
+    // Raw Silk / Tussar
+    'raw silk': 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80',
+    'tussar': 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
+
+    // Satin / Designer
+    'satin': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
+    'designer': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80',
 
     // Default fallback
     'default': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80'
@@ -45,9 +65,9 @@ const sareeImagePool = [
     'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80', // Red silk saree
     'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&q=80', // Traditional saree
     'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80', // Elegant drape
-    'https://images.unsplash.com/photo-1602481132167-82e4f1cb35a8?w=800&q=80', // Bridal saree
+    'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80', // Bridal saree
     'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=800&q=80', // Party wear
-    'https://images.unsplash.com/photo-1583391733803-9f9e1e9e2a1c?w=800&q=80', // Designer saree
+    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80', // Designer saree
     'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=800&q=80', // Traditional wear
     'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80', // Festive saree
 ];
