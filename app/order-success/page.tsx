@@ -68,7 +68,7 @@ export default function OrderSuccessPage() {
                     Track Order
                 </Link>
                 <Link
-                    href="/"
+                    href="/collections"
                     className="flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-stone-200 text-stone-700 rounded-full font-semibold hover:bg-stone-50 hover:border-stone-300 transition-all"
                 >
                     <ShoppingBag className="w-5 h-5" />
