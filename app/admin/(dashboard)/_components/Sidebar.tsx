@@ -9,7 +9,8 @@ import {
     BarChart,
     Settings,
     Package,
-    LogOut
+    LogOut,
+    Store
 } from 'lucide-react';
 
 const sidebarLinks = [
@@ -65,6 +66,14 @@ export default function Sidebar() {
             {/* Navigation */}
             <div className="flex flex-col justify-between h-[calc(100vh-4rem)] px-3 py-4">
                 <nav className="space-y-1">
+                    <Link
+                        href="/collections"
+                        target="_blank"
+                        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors mb-2"
+                    >
+                        <Store className="h-5 w-5 text-gray-500" />
+                        Visit Store
+                    </Link>
                     {sidebarLinks.map((link) => {
                         const Icon = link.icon;
                         const isActive = pathname === link.href;
@@ -74,8 +83,8 @@ export default function Sidebar() {
                                 key={link.href}
                                 href={link.href}
                                 className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                                        ? 'bg-primary-50 text-primary-700 shadow-sm'
-                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                    ? 'bg-primary-50 text-primary-700 shadow-sm'
+                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                                     }`}
                             >
                                 <Icon className={`h-5 w-5 ${isActive ? 'text-primary-600' : 'text-gray-400 group-hover:text-gray-500'}`} />

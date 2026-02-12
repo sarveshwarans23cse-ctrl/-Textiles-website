@@ -2,19 +2,22 @@ import * as nodemailer from 'nodemailer';
 
 // Gmail SMTP configuration
 const EMAIL_USER = process.env.EMAIL_USER || 'sarveshwaran2538@gmail.com';
-const EMAIL_PASS = process.env.EMAIL_PASS || 'muddcdakashnxuli';
+const EMAIL_PASS = process.env.EMAIL_PASS || 'vgic zyrb zbuu lktj';
+
+console.log('[Email Config] Using User:', EMAIL_USER);
 
 // Create transporter with Gmail SMTP configuration
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true, // true for 465, false for other ports
   auth: {
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
-  connectionTimeout: 10000,
-  socketTimeout: 10000,
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 export async function sendOTP(email: string, otp: string): Promise<boolean> {
@@ -44,9 +47,6 @@ export async function sendOTP(email: string, otp: string): Promise<boolean> {
     return true;
   } catch (error) {
     console.error(`[Email Service] Gmail send failed:`, error);
-    // If Gmail fails, still allow OTP flow to proceed
-    // The OTP is stored server-side and can be verified
-    console.log(`[Email Service] OTP for ${email} is stored server-side and ready for verification.`);
-    return true;
+    return false;
   }
 }

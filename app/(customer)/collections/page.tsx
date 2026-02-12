@@ -203,8 +203,8 @@ export default function CollectionsPage() {
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === cat
-                                            ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/30'
-                                            : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
+                                        ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg shadow-primary-500/30'
+                                        : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
                                         }`}
                                 >
                                     {cat === 'all' ? 'All' : cat}
@@ -309,7 +309,7 @@ export default function CollectionsPage() {
                         Can&apos;t Find What You&apos;re Looking For?
                     </h2>
                     <p className="text-stone-300 text-lg mb-10 font-light max-w-2xl mx-auto">
-                        Contact us for custom orders or to inquire about specific designs. We're here to help you find your perfect saree.
+                        Contact us for custom orders or to inquire about specific designs. We&apos;re here to help you find your perfect saree.
                     </p>
                     <Link
                         href="/about"

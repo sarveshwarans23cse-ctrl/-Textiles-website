@@ -46,13 +46,11 @@ const ProductSchema: Schema<IProduct> = new Schema(
         timestamps: true,
         toJSON: {
             virtuals: true,
-            transform: function (doc, ret) {
+            transform: function (doc, ret: any) {
                 if (ret._id) {
                     ret.id = ret._id.toString();
                 }
-                // @ts-ignore
                 delete ret._id;
-                // @ts-ignore
                 delete ret.__v;
             }
         },
